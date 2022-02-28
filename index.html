@@ -1,7 +1,7 @@
-<style id="cax">#cxa{transform:rotate3d(3, 1, 1, 230deg)rotateY(0deg);filter:blur(4px)brightness(0);width: 200px;height: 200px;}#cx{width: 50px;}</style>
+<style id="cax">#cx{width: 50px;}</style>
 <style id="vcz"></style>
 <style>
-
+#cxa{transform:rotate3d(3, 1, 1, 230deg);filter:blur(4px)brightness(0);width: 200px;height: 200px;}
 .bulet{width: 20px; height: 10px;border-bottom-left-radius: 41px;border-bottom-right-radius: 41px;border-top-right-radius: 41px;border-top-left-radius: 41px;transition: 1s;}
 .stick_out {position: fixed;left: 50px;top:500px;}
 .stick_main {position: absolute;left: 32px;top: 30px;transition: 0.2s;transform: translate3d(0px, 0px, 0px);}</style>
@@ -17,9 +17,19 @@
     </div>
   </div>
 <div id="bulet" style="display: none;"></div>
+<img src="" id="load" style="display: none;">
 <div style="display: none; width: 10%;height: 10%;position: fixed;right: 0;top: 0;background: black;color: white;font-family: calibri;font-size: 100%;" id="EMBED_ACTIVE_PEN_CHANGE"></div>
+<div style="width: 100%;height: 100%;background: rgb(36,36,36);position: fixed;top: 0;left: 0;z-index: 100;font-family: 20pt;font-family: calibri;color: white;" id="acrload">loading...<br><input id="caadvadxc" value="17">/64 Loaded</div>
 <script>window.HUB_EVENTS={ASSET_ADDED:"ASSET_ADDED",ASSET_DELETED:"ASSET_DELETED",ASSET_DESELECTED:"ASSET_DESELECTED",ASSET_SELECTED:"ASSET_SELECTED",ASSET_UPDATED:"ASSET_UPDATED",CONSOLE_CHANGE:"CONSOLE_CHANGE",CONSOLE_CLOSED:"CONSOLE_CLOSED",CONSOLE_EVENT:"CONSOLE_EVENT",CONSOLE_OPENED:"CONSOLE_OPENED",CONSOLE_RUN_COMMAND:"CONSOLE_RUN_COMMAND",CONSOLE_SERVER_CHANGE:"CONSOLE_SERVER_CHANGE",EMBED_ACTIVE_PEN_CHANGE:"EMBED_ACTIVE_PEN_CHANGE",EMBED_ACTIVE_THEME_CHANGE:"EMBED_ACTIVE_THEME_CHANGE",EMBED_ATTRIBUTE_CHANGE:"EMBED_ATTRIBUTE_CHANGE",EMBED_RESHOWN:"EMBED_RESHOWN",FORMAT_FINISH:"FORMAT_FINISH",FORMAT_ERROR:"FORMAT_ERROR",FORMAT_START:"FORMAT_START",IFRAME_PREVIEW_RELOAD_CSS:"IFRAME_PREVIEW_RELOAD_CSS",IFRAME_PREVIEW_URL_CHANGE:"IFRAME_PREVIEW_URL_CHANGE",KEY_PRESS:"KEY_PRESS",LINTER_FINISH:"LINTER_FINISH",LINTER_START:"LINTER_START",PEN_CHANGE_SERVER:"PEN_CHANGE_SERVER",PEN_CHANGE:"PEN_CHANGE",PEN_EDITOR_CLOSE:"PEN_EDITOR_CLOSE",PEN_EDITOR_CODE_FOLD:"PEN_EDITOR_CODE_FOLD",PEN_EDITOR_ERRORS:"PEN_EDITOR_ERRORS",PEN_EDITOR_EXPAND:"PEN_EDITOR_EXPAND",PEN_EDITOR_FOLD_ALL:"PEN_EDITOR_FOLD_ALL",PEN_EDITOR_LOADED:"PEN_EDITOR_LOADED",PEN_EDITOR_REFRESH_REQUEST:"PEN_EDITOR_REFRESH_REQUEST",PEN_EDITOR_RESET_SIZES:"PEN_EDITOR_RESET_SIZES",PEN_EDITOR_SIZES_CHANGE:"PEN_EDITOR_SIZES_CHANGE",PEN_EDITOR_UI_CHANGE_SERVER:"PEN_EDITOR_UI_CHANGE_SERVER",PEN_EDITOR_UI_CHANGE:"PEN_EDITOR_UI_CHANGE",PEN_EDITOR_UI_DISABLE:"PEN_EDITOR_UI_DISABLE",PEN_EDITOR_UI_ENABLE:"PEN_EDITOR_UI_ENABLE",PEN_EDITOR_UNFOLD_ALL:"PEN_EDITOR_UNFOLD_ALL",PEN_ERROR_INFINITE_LOOP:"PEN_ERROR_INFINITE_LOOP",PEN_ERROR_RUNTIME:"PEN_ERROR_RUNTIME",PEN_ERRORS:"PEN_ERRORS",PEN_LIVE_CHANGE:"PEN_LIVE_CHANGE",PEN_LOGS:"PEN_LOGS",PEN_MANIFEST_CHANGE:"PEN_MANIFEST_CHANGE",PEN_MANIFEST_FULL:"PEN_MANIFEST_FULL",PEN_PREVIEW_FINISH:"PEN_PREVIEW_FINISH",PEN_PREVIEW_START:"PEN_PREVIEW_START",PEN_SAVED:"PEN_SAVED",POPUP_CLOSE:"POPUP_CLOSE",POPUP_OPEN:"POPUP_OPEN",POST_CHANGE:"POST_CHANGE",POST_SAVED:"POST_SAVED",PROCESSING_FINISH:"PROCESSING_FINISH",PROCESSING_START:"PROCESSED_STARTED"},"object"!=typeof window.CP&&(window.CP={}),window.CP.PenTimer={programNoLongerBeingMonitored:!1,timeOfFirstCallToShouldStopLoop:0,_loopExits:{},_loopTimers:{},START_MONITORING_AFTER:2e3,STOP_ALL_MONITORING_TIMEOUT:5e3,MAX_TIME_IN_LOOP_WO_EXIT:2200,exitedLoop:function(E){this._loopExits[E]=!0},shouldStopLoop:function(E){if(this.programKilledSoStopMonitoring)return!0;if(this.programNoLongerBeingMonitored)return!1;if(this._loopExits[E])return!1;var _=this._getTime();if(0===this.timeOfFirstCallToShouldStopLoop)return this.timeOfFirstCallToShouldStopLoop=_,!1;var o=_-this.timeOfFirstCallToShouldStopLoop;if(o<this.START_MONITORING_AFTER)return!1;if(o>this.STOP_ALL_MONITORING_TIMEOUT)return this.programNoLongerBeingMonitored=!0,!1;try{this._checkOnInfiniteLoop(E,_)}catch(N){return this._sendErrorMessageToEditor(),this.programKilledSoStopMonitoring=!0,!0}return!1},_sendErrorMessageToEditor:function(){try{if(this._shouldPostMessage()){var E={topic:HUB_EVENTS.PEN_ERROR_INFINITE_LOOP,data:{line:this._findAroundLineNumber()}};parent.postMessage(E,"*")}else this._throwAnErrorToStopPen()}catch(_){this._throwAnErrorToStopPen()}},_shouldPostMessage:function(){return document.location.href.match(/boomboom/)},_throwAnErrorToStopPen:function(){throw"We found an infinite loop in your Pen. We've stopped the Pen from running. More details and workarounds at https://blog.codepen.io/2016/06/08/can-adjust-infinite-loop-protection-timing/"},_findAroundLineNumber:function(){var E=new Error,_=0;if(E.stack){var o=E.stack.match(/boomboom\S+:(\d+):\d+/);o&&(_=o[1])}return _},_checkOnInfiniteLoop:function(E,_){if(!this._loopTimers[E])return this._loopTimers[E]=_,!1;var o;if(_-this._loopTimers[E]>this.MAX_TIME_IN_LOOP_WO_EXIT)throw"Infinite Loop found on loop: "+E},_getTime:function(){return+new Date}},window.CP.shouldStopExecution=function(E){var _=window.CP.PenTimer.shouldStopLoop(E);return!0===_&&console.warn("[CodePen]: An infinite loop (or a loop taking too long) was detected, so we stopped its execution. More details at https://blog.codepen.io/2016/06/08/can-adjust-infinite-loop-protection-timing/"),_},window.CP.exitedLoop=function(E){window.CP.PenTimer.exitedLoop(E)};</script>
 <script>
+aax();
+function aax() {
+  document.getElementById("load").setAttribute('src', "assets/char/"+document.getElementById("caadvadxc").value+".png");
+document.getElementById("caadvadxc").value ++;
+if(document.getElementById("caadvadxc").value > 64){document.getElementById("caadvadxc").value = 17;document.getElementById("load").outerHTML = "";document.getElementById("acrload").outerHTML = "";}else{document.getElementById("load").addEventListener("load",function(e){acadb();});}
+}
+function acadb(){aax();}
+
   function absoluter(){
     var adrt=document.getElementById("cx").getAttribute("src");
 document.getElementById("cxa").setAttribute('src', adrt);
@@ -104,7 +114,6 @@ class JoystickController
       if (event.changedTouches && self.touchId != event.changedTouches[0].identifier) return;
       stick.style.transition = '500ms';
       stick.style.transform = `translate3d(0px, 0px, 0px)rotatey(360deg)`;
-      stick.style.color = "aqua";
       self.value = { x: 0, y: 0 };
       self.touchId = null;
       self.active = false;
@@ -139,8 +148,8 @@ document.getElementById('a').value = -175;
 setInterval('abv()',1);
 function abv(){
 var lftrt= document.getElementById('t').value;
-if(lftrt < 0){document.getElementById('b').value ++;document.getElementById('cax').innerHTML = "#cxa{transform:rotate3d(3, 1, 1, 230deg)rotateY(180deg);filter:blur(4px)brightness(0);width: 200px;height: 200px;}#cx{transform:rotateY(180deg);width:100px;height: 182px;transition:cubic-bezier(0.42, 0, 0, 2.9);}";aaa();}
-if(lftrt > 0){document.getElementById('b').value --;document.getElementById('cax').innerHTML = "#cxa{transform:rotate3d(3, 1, 1, 230deg)rotateY(0deg);filter:blur(4px)brightness(0);width: 200px;height: 200px;}#cx{width:100px;height: 182px;transition:cubic-bezier(0.42, 0, 0, 2.9);}";aaa();}
+if(lftrt < 0){document.getElementById('b').value ++;document.getElementById('cax').innerHTML = "#cx{transform:rotateY(180deg);width:100px;height: 182px;transition:cubic-bezier(0.42, 0, 0, 2.9);}";aaa();}
+if(lftrt > 0){document.getElementById('b').value --;document.getElementById('cax').innerHTML = "#cx{width:100px;height: 182px;transition:cubic-bezier(0.42, 0, 0, 2.9);}";aaa();}
 document.getElementById('cx').style = "position:fixed;top:"+(document.getElementById('a').value / -1)+"px;left:"+(document.getElementById('b').value / -1)+"px;";
 
 if(document.getElementById('b').value > 40){document.getElementById('b').value = '-1345'}
@@ -165,15 +174,18 @@ xc.addEventListener("click",function(e){  y = e.clientX;
 fire(y,x);
 })
 function dragElement(elmnt) {
-elmnt.onmousedown = dragMouseDown;
+  elmnt.onmousedown = dragMouseDown;
+  elmnt.ontouchstart = dragMouseDown;
 function dragMouseDown(e) {
     e = e || window.event;
     e.preventDefault();
     pos3 = e.clientX;
     pos4 = e.clientY;
-document.onmousemove = elementDrag;
-document.onclick = elementDrag;
-document.onmouseup = closeDragElement;
+    document.onmousemove = elementDrag;
+    document.onclick = elementDrag;
+    document.ontouchmove = elemenDrag;
+    document.ontouchend = closeDragElement;
+    document.onmouseup = closeDragElement;
  }
 
  function elementDrag(e) {
@@ -182,10 +194,20 @@ document.onmouseup = closeDragElement;
 fire(y,x);
 }
 
+
+function elemenDrag(e) {
+  var touch = event.touches[0];
+var x = touch.pageX;
+var y = touch.pageY;
+fire(x,y);
+}
+
   function closeDragElement() {
-    document.onmousemove = null;
-document.onclick = null;
-document.ontouchmove = null;
+  document.onmousemove = null;
+    document.onclick = null;
+    document.ontouchmove = null;
+    document.ontouchend = null;
+    document.onmouseup = null;
 }
 }
 
@@ -244,3 +266,4 @@ cro("w="+i+"&");
 </body>
 
 </html>
+ 
