@@ -1,0 +1,247 @@
+<style id="cax">#cx{width: 50px;}</style>
+<style id="vcz"></style>
+<style>
+#cxa{transform:rotate3d(3, 1, 1, 230deg);filter:blur(4px)brightness(0);width: 200px;height: 200px;}
+.bulet{width: 20px; height: 10px;border-bottom-left-radius: 41px;border-bottom-right-radius: 41px;border-top-right-radius: 41px;border-top-left-radius: 41px;transition: 1s;}
+.stick_out {position: fixed;left: 50px;top:500px;}
+.stick_main {position: absolute;left: 32px;top: 30px;transition: 0.2s;transform: translate3d(0px, 0px, 0px);}</style>
+</head>
+<body translate="no"  style="background:linear-gradient(243deg, #0089ff, #00ffd0);">
+<input id="t" style="display: none;"><input id="adaadvcb" value="9999"><input id="v" style="display: none;"><input id="b" style="display: none;"><input id="a" style="display: none;">
+<img id="cx" src="assets/char/1.png">
+<img id="cxa" src="assets/char/1.png">
+<div style="position: fixed;top: 0;left: 0;width: 100%;height: 100%;background: transparent;display: flex;" id="bdy"></div>
+<div style="background: url('block.png');width: 100%;position:fixed;top: 357px;left:0; background-size: 151% 100%;height: 55%;"></div>
+<div class="stick_out" id="av" style="width:126px;height:126px;background:rgb(36 36 36 / 39%);border-radius: 10000px;">
+  <div id="stick" class="stick_main" style="width: 64px;height: 64px;background: rgb(36,36,36);border-radius: 10000px;">
+    </div>
+  </div>
+<div id="bulet" style="display: none;"></div>
+<div style="display: none; width: 10%;height: 10%;position: fixed;right: 0;top: 0;background: black;color: white;font-family: calibri;font-size: 100%;" id="EMBED_ACTIVE_PEN_CHANGE"></div>
+<script>window.HUB_EVENTS={ASSET_ADDED:"ASSET_ADDED",ASSET_DELETED:"ASSET_DELETED",ASSET_DESELECTED:"ASSET_DESELECTED",ASSET_SELECTED:"ASSET_SELECTED",ASSET_UPDATED:"ASSET_UPDATED",CONSOLE_CHANGE:"CONSOLE_CHANGE",CONSOLE_CLOSED:"CONSOLE_CLOSED",CONSOLE_EVENT:"CONSOLE_EVENT",CONSOLE_OPENED:"CONSOLE_OPENED",CONSOLE_RUN_COMMAND:"CONSOLE_RUN_COMMAND",CONSOLE_SERVER_CHANGE:"CONSOLE_SERVER_CHANGE",EMBED_ACTIVE_PEN_CHANGE:"EMBED_ACTIVE_PEN_CHANGE",EMBED_ACTIVE_THEME_CHANGE:"EMBED_ACTIVE_THEME_CHANGE",EMBED_ATTRIBUTE_CHANGE:"EMBED_ATTRIBUTE_CHANGE",EMBED_RESHOWN:"EMBED_RESHOWN",FORMAT_FINISH:"FORMAT_FINISH",FORMAT_ERROR:"FORMAT_ERROR",FORMAT_START:"FORMAT_START",IFRAME_PREVIEW_RELOAD_CSS:"IFRAME_PREVIEW_RELOAD_CSS",IFRAME_PREVIEW_URL_CHANGE:"IFRAME_PREVIEW_URL_CHANGE",KEY_PRESS:"KEY_PRESS",LINTER_FINISH:"LINTER_FINISH",LINTER_START:"LINTER_START",PEN_CHANGE_SERVER:"PEN_CHANGE_SERVER",PEN_CHANGE:"PEN_CHANGE",PEN_EDITOR_CLOSE:"PEN_EDITOR_CLOSE",PEN_EDITOR_CODE_FOLD:"PEN_EDITOR_CODE_FOLD",PEN_EDITOR_ERRORS:"PEN_EDITOR_ERRORS",PEN_EDITOR_EXPAND:"PEN_EDITOR_EXPAND",PEN_EDITOR_FOLD_ALL:"PEN_EDITOR_FOLD_ALL",PEN_EDITOR_LOADED:"PEN_EDITOR_LOADED",PEN_EDITOR_REFRESH_REQUEST:"PEN_EDITOR_REFRESH_REQUEST",PEN_EDITOR_RESET_SIZES:"PEN_EDITOR_RESET_SIZES",PEN_EDITOR_SIZES_CHANGE:"PEN_EDITOR_SIZES_CHANGE",PEN_EDITOR_UI_CHANGE_SERVER:"PEN_EDITOR_UI_CHANGE_SERVER",PEN_EDITOR_UI_CHANGE:"PEN_EDITOR_UI_CHANGE",PEN_EDITOR_UI_DISABLE:"PEN_EDITOR_UI_DISABLE",PEN_EDITOR_UI_ENABLE:"PEN_EDITOR_UI_ENABLE",PEN_EDITOR_UNFOLD_ALL:"PEN_EDITOR_UNFOLD_ALL",PEN_ERROR_INFINITE_LOOP:"PEN_ERROR_INFINITE_LOOP",PEN_ERROR_RUNTIME:"PEN_ERROR_RUNTIME",PEN_ERRORS:"PEN_ERRORS",PEN_LIVE_CHANGE:"PEN_LIVE_CHANGE",PEN_LOGS:"PEN_LOGS",PEN_MANIFEST_CHANGE:"PEN_MANIFEST_CHANGE",PEN_MANIFEST_FULL:"PEN_MANIFEST_FULL",PEN_PREVIEW_FINISH:"PEN_PREVIEW_FINISH",PEN_PREVIEW_START:"PEN_PREVIEW_START",PEN_SAVED:"PEN_SAVED",POPUP_CLOSE:"POPUP_CLOSE",POPUP_OPEN:"POPUP_OPEN",POST_CHANGE:"POST_CHANGE",POST_SAVED:"POST_SAVED",PROCESSING_FINISH:"PROCESSING_FINISH",PROCESSING_START:"PROCESSED_STARTED"},"object"!=typeof window.CP&&(window.CP={}),window.CP.PenTimer={programNoLongerBeingMonitored:!1,timeOfFirstCallToShouldStopLoop:0,_loopExits:{},_loopTimers:{},START_MONITORING_AFTER:2e3,STOP_ALL_MONITORING_TIMEOUT:5e3,MAX_TIME_IN_LOOP_WO_EXIT:2200,exitedLoop:function(E){this._loopExits[E]=!0},shouldStopLoop:function(E){if(this.programKilledSoStopMonitoring)return!0;if(this.programNoLongerBeingMonitored)return!1;if(this._loopExits[E])return!1;var _=this._getTime();if(0===this.timeOfFirstCallToShouldStopLoop)return this.timeOfFirstCallToShouldStopLoop=_,!1;var o=_-this.timeOfFirstCallToShouldStopLoop;if(o<this.START_MONITORING_AFTER)return!1;if(o>this.STOP_ALL_MONITORING_TIMEOUT)return this.programNoLongerBeingMonitored=!0,!1;try{this._checkOnInfiniteLoop(E,_)}catch(N){return this._sendErrorMessageToEditor(),this.programKilledSoStopMonitoring=!0,!0}return!1},_sendErrorMessageToEditor:function(){try{if(this._shouldPostMessage()){var E={topic:HUB_EVENTS.PEN_ERROR_INFINITE_LOOP,data:{line:this._findAroundLineNumber()}};parent.postMessage(E,"*")}else this._throwAnErrorToStopPen()}catch(_){this._throwAnErrorToStopPen()}},_shouldPostMessage:function(){return document.location.href.match(/boomboom/)},_throwAnErrorToStopPen:function(){throw"We found an infinite loop in your Pen. We've stopped the Pen from running. More details and workarounds at https://blog.codepen.io/2016/06/08/can-adjust-infinite-loop-protection-timing/"},_findAroundLineNumber:function(){var E=new Error,_=0;if(E.stack){var o=E.stack.match(/boomboom\S+:(\d+):\d+/);o&&(_=o[1])}return _},_checkOnInfiniteLoop:function(E,_){if(!this._loopTimers[E])return this._loopTimers[E]=_,!1;var o;if(_-this._loopTimers[E]>this.MAX_TIME_IN_LOOP_WO_EXIT)throw"Infinite Loop found on loop: "+E},_getTime:function(){return+new Date}},window.CP.shouldStopExecution=function(E){var _=window.CP.PenTimer.shouldStopLoop(E);return!0===_&&console.warn("[CodePen]: An infinite loop (or a loop taking too long) was detected, so we stopped its execution. More details at https://blog.codepen.io/2016/06/08/can-adjust-infinite-loop-protection-timing/"),_},window.CP.exitedLoop=function(E){window.CP.PenTimer.exitedLoop(E)};</script>
+<script>
+  function absoluter(){
+    var adrt=document.getElementById("cx").getAttribute("src");
+document.getElementById("cxa").setAttribute('src', adrt);
+document.getElementById("cxa").style.position = "fixed";
+document.getElementById("cxa").style.zIndex = "1";
+document.getElementById("cxa").style.top = (document.getElementById('a').value / -1)+150;
+document.getElementById("cxa").style.left = (document.getElementById('b').value / -1)-110;
+ window.requestAnimationFrame(absoluter);}
+ absoluter();
+var ind = 17;
+function aaa() {
+  document.getElementById("cx").setAttribute('src', "assets/char/"+ind+".png");
+ind++;
+if(ind > 64){ind = 17;}
+}
+
+class JoystickController
+{
+  constructor(stickID, maxDistance, deadzone)
+  {
+    this.id = stickID;
+    let stick = document.getElementById(stickID);
+    this.dragStart = null;
+    this.touchId = null;
+
+    this.active = false;
+    this.value = { x: 0, y: 0 };
+
+    let self = this;
+
+    function handleDown(event)
+    {
+      self.active = true;
+      stick.style.transition = 'none';
+      event.preventDefault();
+
+      if (event.changedTouches)
+      self.dragStart = { x: event.changedTouches[0].clientX, y: event.changedTouches[0].clientY };else
+
+      self.dragStart = { x: event.clientX, y: event.clientY };
+      if (event.changedTouches)
+      self.touchId = event.changedTouches[0].identifier;
+    }
+
+    function handleMove(event)
+    {update();
+      if (!self.active) return;
+      let touchmoveId = null;
+      if (event.changedTouches)
+      {
+        for (let i = 0; i < event.changedTouches.length; i++)
+        {
+          if (self.touchId == event.changedTouches[i].identifier)
+          {
+            touchmoveId = i;
+            event.clientX = event.changedTouches[i].clientX;
+            event.clientY = event.changedTouches[i].clientY;
+          }
+        }
+
+        if (touchmoveId == null) return;
+      }
+
+      const xDiff = event.clientX - self.dragStart.x;
+      const yDiff = event.clientY - self.dragStart.y;
+      const angle = Math.atan2(yDiff, xDiff);
+      const distance = Math.min(maxDistance, Math.hypot(xDiff, yDiff));
+      const xPosition = distance * Math.cos(angle);
+      const yPosition = distance * Math.sin(angle);
+      stick.style.transform = `translate3d(${xPosition}px, ${yPosition}px, 0px)`;
+      const distance2 = distance < deadzone ? 0 : maxDistance / (maxDistance - deadzone) * (distance - deadzone);
+      const xPosition2 = distance2 * Math.cos(angle);
+      const yPosition2 = distance2 * Math.sin(angle);
+      const xPercent = parseFloat((xPosition2 / maxDistance).toFixed(4));
+      const yPercent = parseFloat((yPosition2 / maxDistance).toFixed(4));
+      self.value = { x: xPercent, y: yPercent };
+    }
+
+    function handleUp(event)
+    {
+      if (!self.active) return;
+      if (event.changedTouches && self.touchId != event.changedTouches[0].identifier) return;
+      stick.style.transition = '500ms';
+      stick.style.transform = `translate3d(0px, 0px, 0px)rotatey(360deg)`;
+      stick.style.color = "aqua";
+      self.value = { x: 0, y: 0 };
+      self.touchId = null;
+      self.active = false;
+}
+
+    stick.addEventListener('mousedown', handleDown);
+    stick.addEventListener('touchstart', handleDown);
+    document.addEventListener('mousemove', handleMove, { passive: false });
+    document.addEventListener('touchmove', handleMove, { passive: false });
+    document.addEventListener('mouseup', handleUp );
+    document.addEventListener('touchend', handleUp);
+  }}
+
+let myStick = new JoystickController("stick", 64, 8);
+function update()
+{
+  var xval = parseInt(myStick.value.x * 500);
+  var yval = parseInt(myStick.value.y * -500);
+  var rval = yval - xval;
+  var lval = yval + xval;
+  document.getElementById('t').value = (myStick.value.x *1);
+}
+
+function loop()
+{
+if(stick.style.transition == "500ms"){update();}
+requestAnimationFrame(loop);
+}
+loop();
+
+document.getElementById('a').value = -175;
+setInterval('abv()',1);
+function abv(){
+var lftrt= document.getElementById('t').value;
+if(lftrt < 0){document.getElementById('b').value ++;document.getElementById('cax').innerHTML = "#cx{transform:rotateY(180deg);width:100px;height: 182px;transition:cubic-bezier(0.42, 0, 0, 2.9);}";aaa();}
+if(lftrt > 0){document.getElementById('b').value --;document.getElementById('cax').innerHTML = "#cx{width:100px;height: 182px;transition:cubic-bezier(0.42, 0, 0, 2.9);}";aaa();}
+document.getElementById('cx').style = "position:fixed;top:"+(document.getElementById('a').value / -1)+"px;left:"+(document.getElementById('b').value / -1)+"px;";
+
+if(document.getElementById('b').value > 40){document.getElementById('b').value = '-1345'}
+if(document.getElementById('b').value < -1345){document.getElementById('b').value = '40'}
+if(document.getElementById('a').value < -175){document.getElementById('a').value = '-174'}
+
+} 
+document.addEventListener("keyup",function(e){document.getElementById('t').value = "0";document.getElementById("stick").style.transform = "translate3d(0px, 0px, 0px) rotateY(360deg)";})
+document.addEventListener("keydown",function(e){
+
+ if(e.keyCode == '39'){document.getElementById('t').value = "1";document.getElementById("stick").style.transform = "translate3d(60px, 0px, 0px) rotateY(0deg)";document.getElementById("stick").style.display = "none";document.getElementById("av").style.display = "none";}
+ else if(e.keyCode == '37'){document.getElementById('t').value = "-1"; document.getElementById("stick").style.transform = "translate3d(-60px, 0px, 0px) rotateY(0deg)";document.getElementById("stick").style.display = "none";document.getElementById("av").style.display = "none";}
+ else if(e.keyCode == '38'){document.getElementById("stick").style.transform = "translate3d(0px, -60px, 0px) rotateY(0deg)";document.getElementById("stick").style.display = "none";document.getElementById("av").style.display = "none";}
+ else if(e.keyCode == '40'){document.getElementById("stick").style.transform = "translate3d(0px, 60px, 0px) rotateY(0deg)";document.getElementById("stick").style.display = "none";document.getElementById("av").style.display = "none";}
+
+
+})
+var xc = document.getElementById("bdy");
+dragElement(xc);
+xc.addEventListener("click",function(e){  y = e.clientX;
+  x = e.clientY;
+fire(y,x);
+})
+function dragElement(elmnt) {
+elmnt.onmousedown = dragMouseDown;
+function dragMouseDown(e) {
+    e = e || window.event;
+    e.preventDefault();
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+document.onmousemove = elementDrag;
+document.onclick = elementDrag;
+document.onmouseup = closeDragElement;
+ }
+
+ function elementDrag(e) {
+  y = e.clientX;
+  x = e.clientY;
+fire(y,x);
+}
+
+  function closeDragElement() {
+    document.onmousemove = null;
+document.onclick = null;
+document.ontouchmove = null;
+}
+}
+
+document.getElementById('cax').innerHTML = "#cx{width:100px;height: 182px;transition:cubic-bezier(0.42, 0, 0, 2.9);}";
+setInterval('if(document.getElementById("stick").style.transform == "translate3d(0px, 0px, 0px) rotateY(360deg)"){if(document.getElementById("cx").getAttribute("src")== "assets/char/1.png"){}else{document.getElementById("cx").setAttribute("src", "assets/char/"+"1.png");}}',1);
+var v = 11041241;
+function cro(a){
+setTimeout(function() {
+document.getElementById("cx").setAttribute("src", "assets/char/1.png");
+document.getElementById(a).style.transition = "100ms";document.getElementById(a).style.backgroundColor = "";
+setTimeout(function(){document.getElementById(a).style.transition = "500ms";document.getElementById(a).style.width = "90px";
+  document.getElementById(a).style.height = "90px";document.getElementById(a).style.background = "url('assets/explode/1.png') ";
+  document.getElementById(a).style.transform = "rotate("+((v * (Math.random()) * Math.random() ) /Math.random() )+"deg)"; document.getElementById(a).style.backgroundRepeat = "no-repeat"; document.getElementById(a).style.backgroundSize = "contain";},100);
+
+  setTimeout(function(){document.getElementById(a).style.opacity = "0";},400);
+}, 500);
+setTimeout(function() {
+  document.getElementById(a).outerHTML = "";
+}, 2000);
+
+}
+
+let i = 1;
+let kl = 1;
+let body = document.getElementsByTagName("body")[0];
+function fire(a,b){
+document.getElementById("cx").setAttribute('src', "assets/char/wp.png");
+var ka = document.getElementById("adaadvcb");
+
+if(ka.value > 0){
+const va = ["#370000","#026500","#04231d","#1c272f","#160865","#a700ac","#970032","#370000"]
+      let windowx = document.createElement("div");
+      body.appendChild(windowx);
+      windowx.setAttribute("id", "w="+i+"&");
+      windowx.setAttribute("class","bulet");
+     windowx.style.backgroundColor = va[kl];
+     windowx.style.position = "fixed";
+      if(kl>6){kl=1;}else{kl++;}
+windowx.style.top = (document.getElementById('a').value / -1)+25;
+windowx.style.left = (document.getElementById('b').value / -1)+99;
+windowx.style.transition = "600ms";
+setTimeout(function(){
+windowx.style.position = "fixed";
+windowx.style.top = b;
+windowx.style.left = a;
+ka.value --;
+},1)
+
+cro("w="+i+"&");
+      i++;
+}else{document.getElementById("EMBED_ACTIVE_PEN_CHANGE").innerHTML ="Not enough ammo !";document.getElementById("EMBED_ACTIVE_PEN_CHANGE").style.display = "flex"; setTimeout('document.getElementById("EMBED_ACTIVE_PEN_CHANGE").style.display = "none";',1000);}}
+</script>
+
+  
+
+</body>
+
+</html>
+ 

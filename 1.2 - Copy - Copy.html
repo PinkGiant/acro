@@ -1,0 +1,10 @@
+<img id="cx" style="height: 100%;margin: auto;display: block; margin-left: auto;margin-right: auto;">
+<script>
+  var ind = 2;
+function aaa() {
+document.getElementById("cx").setAttribute('src', "assets/c/"+ind+".png");
+ind++;
+if(ind > 4){ind = 2;}
+}
+document.onclick(setInterval("aaa()",70));
+</script>
