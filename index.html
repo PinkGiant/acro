@@ -1,7 +1,7 @@
-<style id="cax">#cx{width: 50px;}</style>
+<style id="cax">#cxa{transform:rotate3d(3, 1, 1, 230deg)rotateY(0deg);filter:blur(4px)brightness(0);width: 200px;height: 200px;}#cx{width: 50px;}</style>
 <style id="vcz"></style>
 <style>
-#cxa{transform:rotate3d(3, 1, 1, 230deg);filter:blur(4px)brightness(0);width: 200px;height: 200px;}
+
 .bulet{width: 20px; height: 10px;border-bottom-left-radius: 41px;border-bottom-right-radius: 41px;border-top-right-radius: 41px;border-top-left-radius: 41px;transition: 1s;}
 .stick_out {position: fixed;left: 50px;top:500px;}
 .stick_main {position: absolute;left: 32px;top: 30px;transition: 0.2s;transform: translate3d(0px, 0px, 0px);}</style>
@@ -139,8 +139,8 @@ document.getElementById('a').value = -175;
 setInterval('abv()',1);
 function abv(){
 var lftrt= document.getElementById('t').value;
-if(lftrt < 0){document.getElementById('b').value ++;document.getElementById('cax').innerHTML = "#cx{transform:rotateY(180deg);width:100px;height: 182px;transition:cubic-bezier(0.42, 0, 0, 2.9);}";aaa();}
-if(lftrt > 0){document.getElementById('b').value --;document.getElementById('cax').innerHTML = "#cx{width:100px;height: 182px;transition:cubic-bezier(0.42, 0, 0, 2.9);}";aaa();}
+if(lftrt < 0){document.getElementById('b').value ++;document.getElementById('cax').innerHTML = "#cxa{transform:rotate3d(3, 1, 1, 230deg)rotateY(180deg);filter:blur(4px)brightness(0);width: 200px;height: 200px;}#cx{transform:rotateY(180deg);width:100px;height: 182px;transition:cubic-bezier(0.42, 0, 0, 2.9);}";aaa();}
+if(lftrt > 0){document.getElementById('b').value --;document.getElementById('cax').innerHTML = "#cxa{transform:rotate3d(3, 1, 1, 230deg)rotateY(0deg);filter:blur(4px)brightness(0);width: 200px;height: 200px;}#cx{width:100px;height: 182px;transition:cubic-bezier(0.42, 0, 0, 2.9);}";aaa();}
 document.getElementById('cx').style = "position:fixed;top:"+(document.getElementById('a').value / -1)+"px;left:"+(document.getElementById('b').value / -1)+"px;";
 
 if(document.getElementById('b').value > 40){document.getElementById('b').value = '-1345'}
@@ -244,4 +244,3 @@ cro("w="+i+"&");
 </body>
 
 </html>
- 
